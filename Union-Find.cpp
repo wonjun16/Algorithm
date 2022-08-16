@@ -7,8 +7,8 @@ int getParent(int parent[], int child) {
 	return parent[child] = getParent(parent, parent[child]);
 }
 
-//union two nodes (smaller > parent / bigger > child)
-void unionParent(int parent[], int nodeA, int nodeB) {
+//union two nodes (smaller node-> parent / bigger node-> child)
+void unionNodes(int parent[], int nodeA, int nodeB) {
 	nodeA = getParent(parent, nodeA);
 	nodeB = getParent(parent, nodeB);
 	if (nodeA > nodeB) parent[nodeA] = nodeB;
@@ -23,15 +23,14 @@ bool check(int nodeA, int nodeB, int parent[]) {
 
 void main() {
 	int parent[SIZE + 1];
-	//initialize all nodes
+	//initialize grapes
 	for (int i = 1; i < SIZE + 1; i++)
 		parent[i] = i;
-	unionParent(parent, 1, 2);
-	unionParent(parent, 2, 3);
-	unionParent(parent, 3, 4);
-	unionParent(parent, 5, 6);
-	unionParent(parent, 6, 7);
-	unionParent(parent, 1, 6);
+	unionNodes(parent, 1, 2);
+	unionNodes(parent, 2, 3);
+	unionNodes(parent, 3, 4);
+	unionNodes(parent, 5, 6);
+	unionNodes(parent, 6, 7);
 
 	std::cout << "node1 and node5 are linked : " << check(1, 5, parent) << '\n';
 	std::cout << "node6 and node7 are linked : " << check(6, 7, parent) << '\n';
