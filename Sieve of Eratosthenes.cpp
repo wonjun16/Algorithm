@@ -7,7 +7,7 @@ void sieve() {
 		number[i] = i;
 	for (int i = 2; i * i < SIZE + 1; i++) {
 		if (number[i]) {
-			for (int j = i + 1; j < SIZE + 1; j++) {
+			for (int j = i + i; j < SIZE + 1; j++) {
 				if (!(number[j] % i)) number[j] = 0;
 			}
 		}
